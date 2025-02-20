@@ -1,0 +1,84 @@
+<html >
+  <head>
+    
+    <title>Travel Database</title>
+    
+  </head>
+  <body>
+    <header>
+    <section>
+      <h1><a href="index.html"> Travel Database</a></h1>
+    <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="destination.html">Destinations</a></li>
+      <li><a href="travelReport.html">Travel Report</a></li>
+      <li><a href="travelTips.html">Travel Tips</a></li>
+      
+     
+    </ul>
+  </nav>
+		</header>
+	</section>
+	<main>
+	<h3>Travel Details</h3> 
+
+  <section id = "destinationDetail"></section>
+	
+</main>
+	
+<footer>
+	&copy; 2024 Travel Company. All rights reserved.
+</footer>
+</body>
+</html>
+
+	<script>
+		let destinations = [
+			{id : "1", name: "Paris ", title : "<strong>Duration: </strong> 7 days ",highlights: "<strong>Highlights: </strong>Eiffel Tower, Louvre Museum",details:"<strong>Details: </strong>A wonderful trip to the romantic city."},
+			{id : "2", name: "Tokyo ", title : "<strong>Duration: </strong> 7 days ",highlights: "<strong>Highlights: </strong>Tokyo Tower, Meiji Shrine ",details:"<strong>Details: </strong>A wonderful trip to the romantic city."},
+			{id : "3", name: "Rome", title : "<strong>Duration: </strong> 7 days ",highlights: "<strong>Highlights: </strong>Colosseum, Vatican City",details:"<strong>Details: </strong>A wonderful trip to the romantic city."},
+			{id : "4", name: "New York City", title : "<strong>Duration: </strong> 7 days ",highlights: "<strong>Highlights: </strong>Statue of Liberty, Central Park ",details:"<strong>Details: </strong>A wonderful trip to the romantic city."},
+			{id : "5", name: "Cape Town", title : "<strong>Duration: </strong> 7 days ",highlights: "<strong>Highlights: </strong>Table Mountain, Robben Island",details:"<strong>Details: </strong>A wonderful trip to the romantic city."},
+			{id : "6", name: "Sydney", title : "<strong>Duration: </strong> 7 days ",highlights: "<strong>Highlights: </strong>Sydney Opera House, Bondi Beach",details:"<strong>Details: </strong>A wonderful trip to the city."}
+			
+			
+		]
+
+function getParameterById(id){
+		
+//get the id from the URL
+		let url = new URL(window.location.href)
+
+return url.searchParams.get(id)
+}
+let destinationId  = getParameterById('id')
+
+//find that id in the database
+let destination;
+for (let i = 0; i< destinations.length; i++ ){
+	if (destinations[i].id === destinationId){
+		destination =destinations[i]
+	}
+}
+//display the details on the view
+
+
+	let destinationDetailElement = document.getElementById('destinationDetail');
+	if (destination){
+	destinationDetailElement.innerHTML = `
+	
+	<h4>${destination.name}</h4> 
+	<ul>
+		
+		<li>${destination.title}</li>
+		<li>${destination.highlights}</li>
+		<li>${destination.details}</li>
+		</ul>
+	`
+} else {
+	destinationDetailElement.innerHTML = 'destination not found.'
+}
+	</script>
+  </body>
+</html>
